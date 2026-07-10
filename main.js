@@ -1007,6 +1007,36 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ═══════════════════════════════════════════
+  // 12. INSTALLATION MODAL LOGIC
+  // ═══════════════════════════════════════════
+  const installModal = document.getElementById('installation-modal');
+  const closeInstallModalBtn = document.getElementById('close-install-modal');
+  const installTriggers = document.querySelectorAll('.open-install-modal');
+
+  if (installModal && closeInstallModalBtn) {
+    installTriggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent jump to #
+        installModal.style.opacity = '1';
+        installModal.style.pointerEvents = 'auto';
+      });
+    });
+
+    closeInstallModalBtn.addEventListener('click', () => {
+      installModal.style.opacity = '0';
+      installModal.style.pointerEvents = 'none';
+    });
+
+    // Close when clicking outside
+    installModal.addEventListener('click', (e) => {
+      if (e.target === installModal) {
+        installModal.style.opacity = '0';
+        installModal.style.pointerEvents = 'none';
+      }
+    });
+  }
+
+  // ═══════════════════════════════════════════
   // HELPERS
   // ═══════════════════════════════════════════
   function sleep(ms) {
